@@ -21,7 +21,8 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-
+ # Github PAT to read/write to private repo
+  TOKEN: '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'
 
 jobs:
   build:
