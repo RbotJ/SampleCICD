@@ -92,4 +92,5 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: |
           DIGEST="${{ steps.docker.outputs.digest }}"
-          cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${DIGEST}
+          TAG="${{ github.sha }}"
+          cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${TAG}@${DIGEST}
