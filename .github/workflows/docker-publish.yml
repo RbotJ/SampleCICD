@@ -10,7 +10,7 @@ on:
     - cron: '16 16 * * *'
   push:
     branches: [ "main" ]
-    # Publish semver tags as releases.
+    # Publish server tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
@@ -22,7 +22,7 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
  # Github PAT to read/write to private repo
-  TOKEN: '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'
+  TOKEN: ${{ secrets.GHCR_PAT }}
 
 jobs:
   build:
@@ -60,7 +60,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.TOKEN }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
